@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 20f, moveLimiter = 0.7f;
     private Rigidbody rigid;
     // Start is called before the first frame update
+    // comment for my new branch
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
