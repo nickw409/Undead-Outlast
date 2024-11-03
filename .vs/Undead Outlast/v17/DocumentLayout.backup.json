@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "E:\\projects\\Undead Outlast\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|e:\\projects\\undead outlast\\assets\\scripts\\camerafollowplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camerafollowplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|e:\\projects\\undead outlast\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|E:\\projects\\Undead Outlast\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\projects\\Undead Outlast\\Assets\\PlayerMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\PlayerMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|e:\\projects\\undead outlast\\assets\\scripts\\camerafollowplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camerafollowplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +18,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CameraFollowPlayer.cs",
               "DocumentMoniker": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\CameraFollowPlayer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollowPlayer.cs",
               "ToolTip": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\CameraFollowPlayer.cs",
               "RelativeToolTip": "Assets\\Scripts\\CameraFollowPlayer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T22:15:30.691Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwB8AAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T19:30:09.385Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "E:\\projects\\Undead Outlast\\Assets\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\PlayerMovement.cs",
-              "ToolTip": "E:\\projects\\Undead Outlast\\Assets\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\PlayerMovement.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-31T16:26:39.787Z"
             }
           ]
         }

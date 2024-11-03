@@ -30,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
             horizontal *= moveLimiter;
             vertical *= moveLimiter;
         }
-        // invert z axis to get right and left correct
         rigid.velocity = new Vector3(horizontal * moveSpeed, 0, vertical * moveSpeed);
-        //rigid.velocity = new Vector3(0, jump * moveSpeed, 0);
     }
 }
