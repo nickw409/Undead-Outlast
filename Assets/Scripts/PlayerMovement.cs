@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movment")]
     public float moveSpeed = 20f, moveLimiter = 0.7f;
     private Rigidbody rigid;
+    [Header("Mechanics")]
+    public float healthPoints = 100f, money;
+    public List<string> inventory;
     // Start is called before the first frame update
     // comment for my new branch
     void Awake()
@@ -17,9 +21,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // input goes here
-        PlayerMove();
+        PlayerMove(); 
     }
-
+    private void FixedUpdate()
+    {
+        if (healthPoints <= 0)
+            Destroy(this);
+    }
     void PlayerMove()
     {
         float horizontal = Input.GetAxisRaw("Horizontal"); // z axis
@@ -32,5 +40,32 @@ public class PlayerMovement : MonoBehaviour
             vertical *= moveLimiter;
         }
         rigid.velocity = new Vector3(horizontal * moveSpeed, 0, vertical * moveSpeed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    { 
+        switch (other.tag)
+        {
+            case "zombie":
+                healthPoints -= 1;
+                break;
+            case "pistol":
+                Destroy(other);
+                //inventory[0] = "pistol";
+                break;
+            // money
+            case "$50":
+                //Destroy(other);
+                money += 50;
+                break;
+            case "$100":
+                //Destroy(other);
+                money += 100;
+                break;
+        }
+        /*if (!other.tag.Equals("zombie"))
+        {
+            Destroy(other);
+        }*/
     }
 }
