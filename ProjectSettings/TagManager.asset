@@ -6,11 +6,12 @@ TagManager:
   tags:
   - pistol
   - bullet
+  - rifel
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
