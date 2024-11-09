@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     private Rigidbody rigid;
     [Header("Mechanics")]
     public float healthPoints = 100f, money = 0f;
+    public float turnSensitivity = 10f;
     public List<GameObject> inventory;
     private bool hasPistol = false;
     [Header("Instantiatable Prefabs")]
     public GameObject bulletPrefab;
-    private GameObject bullet;
+    public Transform bulletSpawnPoint;
+    //private GameObject bullet;
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
         // input goes here
         PlayerMove();
         ShootWeapon();
+        //rotatePlayer();
     }
     private void FixedUpdate()
     {
@@ -45,6 +48,16 @@ public class Player : MonoBehaviour
         rigid.velocity = new Vector3(horizontal * moveSpeed, 0, vertical * moveSpeed);
     }
 
+    void rotatePlayer()
+    {
+        float mouseY = Input.GetAxis("Mouse Y") * turnSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * turnSensitivity;
+        float angle = Mathf.Atan2(mouseX, mouseY) * Mathf.Rad2Deg;
+        if(angle!=0)
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+
+    }
+
     void ShootWeapon()
     {
         float shoot = Input.GetAxisRaw("Fire1");
@@ -55,8 +68,11 @@ public class Player : MonoBehaviour
             {
                 // instantiate bullet prefab from player position
                 // (will make it gun position if we get there)
-                bullet = Instantiate(bulletPrefab) as GameObject;
-                bullet.transform.position = this.transform.position;
+                var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+                bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * 5, ForceMode.Impulse);
+                //Vector3 bulletVelocity = bullet.GetComponent<Rigidbody>().velocity;
+                //bulletVelocity = this.transform.forward * 300;
+                //bullet.transform.position = this.transform.position;
             }
         }
     }
