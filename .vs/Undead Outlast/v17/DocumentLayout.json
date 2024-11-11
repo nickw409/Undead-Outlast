@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "E:\\projects\\Undead Outlast\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|e:\\projects\\undead outlast\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|e:\\projects\\undead outlast\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1EA1284-4A6F-CC3F-0D0F-3C1590FA5371}|Assembly-CSharp.csproj|E:\\projects\\Undead Outlast\\assets\\scripts\\camerafollowplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Player.cs",
+              "DocumentMoniker": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
+              "ToolTip": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAAADgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T04:59:34.981Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -31,19 +44,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T22:15:30.691Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
-              "ToolTip": "E:\\projects\\Undead Outlast\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAgwAkAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-31T19:30:09.385Z",
-              "EditorCaption": ""
             }
           ]
         }
