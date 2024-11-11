@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [Header("Mechanics")]
     public float healthPoints = 100f, money = 0f;
     public float turnSensitivity = 10f;
-    public float bulletSpeed = 5f;
+    public float bulletSpeed = 20f;
     public List<GameObject> inventory;
     private bool hasPistol = false, hasRifel = false;
     [Header("Instantiatable Prefabs")]
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (healthPoints <= 0)
-            Destroy(this);
+            Destroy(this.gameObject);
     }
     void PlayerMove()
     {
