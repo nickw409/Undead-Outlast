@@ -110,12 +110,34 @@ public class Player : MonoBehaviour
                                     gameObject.transform.position.z + 0.36f);
             if (Input.GetMouseButtonDown(0)) // single fire
             {
-                var centerBullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-                var leftBullet = Instantiate(bulletPrefab, leftBulletPosition, Quaternion.identity);
-                var rightBullet = Instantiate(bulletPrefab, rightBulletPosition, Quaternion.identity);
-                centerBullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
-                leftBullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
-                rightBullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
+                var centerBullet = Instantiate(bulletPrefab, 
+                                                 bulletSpawnPoint.position, 
+                                                          Quaternion.identity);
+                var leftBullet = Instantiate(bulletPrefab, 
+                                                leftBulletPosition, 
+                                                          Quaternion.identity);
+                var rightBullet = Instantiate(bulletPrefab, 
+                                                rightBulletPosition,
+                                                          Quaternion.identity);
+                centerBullet.GetComponent<Rigidbody>().AddForce(
+                                                                bulletSpawnPoint.forward 
+                                                                * bulletSpeed, 
+                                                                ForceMode.Impulse
+                                                                );
+                leftBullet.GetComponent<Rigidbody>().AddForce(
+                                                              transform.forward 
+                                                              * bulletSpeed, 
+                                                              ForceMode.Impulse
+                                                              );
+                rightBullet.GetComponent<Rigidbody>().AddForce(
+                                                               transform.forward 
+                                                               * bulletSpeed, 
+                                                               ForceMode.Impulse
+                                                               );
+                // debugging code
+                Destroy(rightBullet.gameObject, 3f);
+                Destroy(leftBullet.gameObject, 3f);
+                Destroy(centerBullet.gameObject, 3f);
             }
         }
     }
