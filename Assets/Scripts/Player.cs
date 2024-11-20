@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float turnSensitivity = 10f;
     public float bulletSpeed = 20f;
     public List<GameObject> inventory;
-    private bool hasPistol = false, hasRifel = false;
+    private bool hasPistol = false, hasRifel = false, hasShotty = false;
     [Header("Instantiatable Prefabs")]
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
@@ -97,6 +97,49 @@ public class Player : MonoBehaviour
                 bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
             }
         }
+
+        if (hasShotty)
+        {
+            Vector3 leftBulletPosition
+                    = new Vector3 (gameObject.transform.position.x - 0.69f, 
+                                    bulletSpawnPoint.position.y, 
+                                    gameObject.transform.position.z - 0.36f);
+            Vector3 rightBulletPosition
+                    = new Vector3(gameObject.transform.position.x + 0.69f,
+                                    bulletSpawnPoint.position.y,
+                                    gameObject.transform.position.z + 0.36f);
+            if (Input.GetMouseButtonDown(0)) // single fire
+            {
+                var centerBullet = Instantiate(bulletPrefab, 
+                                                 bulletSpawnPoint.position, 
+                                                          Quaternion.identity);
+                var leftBullet = Instantiate(bulletPrefab, 
+                                                leftBulletPosition, 
+                                                          Quaternion.identity);
+                var rightBullet = Instantiate(bulletPrefab, 
+                                                rightBulletPosition,
+                                                          Quaternion.identity);
+                centerBullet.GetComponent<Rigidbody>().AddForce(
+                                                                bulletSpawnPoint.forward 
+                                                                * bulletSpeed, 
+                                                                ForceMode.Impulse
+                                                                );
+                leftBullet.GetComponent<Rigidbody>().AddForce(
+                                                              transform.forward 
+                                                              * bulletSpeed, 
+                                                              ForceMode.Impulse
+                                                              );
+                rightBullet.GetComponent<Rigidbody>().AddForce(
+                                                               transform.forward 
+                                                               * bulletSpeed, 
+                                                               ForceMode.Impulse
+                                                               );
+                // debugging code
+                Destroy(rightBullet.gameObject, 3f);
+                Destroy(leftBullet.gameObject, 3f);
+                Destroy(centerBullet.gameObject, 3f);
+            }
+        }
     }
 
     // collision code
@@ -110,9 +153,16 @@ public class Player : MonoBehaviour
             case "pistol":
                 hasPistol = true;
                 hasRifel = false;
+                hasShotty = false;
                 break;
             case "rifel":
                 hasRifel = true;
+                hasPistol = false;
+                hasShotty = false;
+                break;
+            case "shotgun":
+                hasShotty = true;
+                hasRifel = false;
                 hasPistol = false;
                 break;
             // money
