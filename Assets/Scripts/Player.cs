@@ -103,42 +103,60 @@ public class Player : MonoBehaviour
         {
             var x = bulletSpawnPoint.position.x - transform.position.x;
             var z = bulletSpawnPoint.position.z - transform.position.z;
-            float rotateAngleLeft = 10 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
-            float rotateAngleRight = -10 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
+            float rotateAngleLeftLeft = 15 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
+            float rotateAngleRightRight = -15 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
+            float rotateAngleLeft = 5 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
+            float rotateAngleRight = -5 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
             if (Input.GetMouseButtonDown(0)) // single fire
             {
-                var centerBullet = Instantiate(bulletPrefab,
+                var leftBullet = Instantiate(bulletPrefab,
                                                  bulletSpawnPoint.position,
                                                           Quaternion.identity);
-                var leftBullet = Instantiate(bulletPrefab,
-                                                bulletSpawnPoint.position,
-                                                          Quaternion.identity);
                 var rightBullet = Instantiate(bulletPrefab,
+                                                 bulletSpawnPoint.position,
+                                                          Quaternion.identity);
+                var leftLeftBullet = Instantiate(bulletPrefab,
                                                 bulletSpawnPoint.position,
                                                           Quaternion.identity);
-                centerBullet.GetComponent<Rigidbody>().AddForce(
-                                                                bulletSpawnPoint.forward
-                                                                * bulletSpeed,
-                                                                ForceMode.Impulse
-                                                                );
-
+                var rightRightBullet = Instantiate(bulletPrefab,
+                                                bulletSpawnPoint.position,
+                                                          Quaternion.identity);
                 var leftMovementDirection = new Vector3(
-                                                        Mathf.Cos(rotateAngleLeft * Mathf.Deg2Rad), 
-                                                        0, 
-                                                        Mathf.Sin(rotateAngleLeft * Mathf.Deg2Rad)
-                                                        ).normalized;
+                                                       Mathf.Cos(rotateAngleLeft * Mathf.Deg2Rad),
+                                                       0,
+                                                       Mathf.Sin(rotateAngleLeft * Mathf.Deg2Rad)
+                                                       ).normalized;
 
                 var rightMovementDirection = new Vector3(
-                                                         Mathf.Cos(rotateAngleRight * Mathf.Deg2Rad), 
+                                                        Mathf.Cos(rotateAngleRight * Mathf.Deg2Rad),
+                                                        0,
+                                                        Mathf.Sin(rotateAngleRight * Mathf.Deg2Rad)
+                                                        ).normalized;
+
+                var leftLeftMovementDirection = new Vector3(
+                                                        Mathf.Cos(rotateAngleLeftLeft * Mathf.Deg2Rad), 
+                                                        0, 
+                                                        Mathf.Sin(rotateAngleLeftLeft * Mathf.Deg2Rad)
+                                                        ).normalized;
+
+                var rightRightMovementDirection = new Vector3(
+                                                         Mathf.Cos(rotateAngleRightRight * Mathf.Deg2Rad), 
                                                          0, 
-                                                         Mathf.Sin(rotateAngleRight * Mathf.Deg2Rad)
+                                                         Mathf.Sin(rotateAngleRightRight * Mathf.Deg2Rad)
                                                          ).normalized;
-                leftBullet.GetComponent<Rigidbody>().velocity = leftMovementDirection * bulletSpeed;
-                rightBullet.GetComponent<Rigidbody>().velocity = rightMovementDirection * bulletSpeed;
+                leftLeftBullet.GetComponent<Rigidbody>().velocity 
+                                     = leftLeftMovementDirection * bulletSpeed;
+                rightRightBullet.GetComponent<Rigidbody>().velocity 
+                                     = rightRightMovementDirection * bulletSpeed;
+                leftBullet.GetComponent<Rigidbody>().velocity
+                                     = leftMovementDirection * bulletSpeed;
+                rightBullet.GetComponent<Rigidbody>().velocity
+                                    = rightMovementDirection * bulletSpeed;
                 // debugging code
+                Destroy(rightRightBullet.gameObject, 3f);
+                Destroy(leftLeftBullet.gameObject, 3f);
                 Destroy(rightBullet.gameObject, 3f);
                 Destroy(leftBullet.gameObject, 3f);
-                Destroy(centerBullet.gameObject, 3f);
             }
         }
     }
