@@ -97,43 +97,44 @@ public class Player : MonoBehaviour
                 bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
             }
         }
-
-        if (hasShotty)
+        // this resource seemed to help me in the development of this condition
+        // https://www.reddit.com/r/Unity2D/comments/76dyvl/how_do_you_do_a_shotgun_spread_in_a_topdown/?rdt=54590
+        if (hasShotty) 
         {
-            Vector3 leftBulletPosition
-                    = new Vector3 (gameObject.transform.position.x - 0.69f, 
-                                    bulletSpawnPoint.position.y, 
-                                    gameObject.transform.position.z - 0.36f);
-            Vector3 rightBulletPosition
-                    = new Vector3(gameObject.transform.position.x + 0.69f,
-                                    bulletSpawnPoint.position.y,
-                                    gameObject.transform.position.z + 0.36f);
+            var x = bulletSpawnPoint.position.x - transform.position.x;
+            var z = bulletSpawnPoint.position.z - transform.position.z;
+            float rotateAngleLeft = 10 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
+            float rotateAngleRight = -10 + (Mathf.Atan2(z, x) * Mathf.Rad2Deg);
             if (Input.GetMouseButtonDown(0)) // single fire
             {
-                var centerBullet = Instantiate(bulletPrefab, 
-                                                 bulletSpawnPoint.position, 
+                var centerBullet = Instantiate(bulletPrefab,
+                                                 bulletSpawnPoint.position,
                                                           Quaternion.identity);
-                var leftBullet = Instantiate(bulletPrefab, 
-                                                leftBulletPosition, 
+                var leftBullet = Instantiate(bulletPrefab,
+                                                bulletSpawnPoint.position,
                                                           Quaternion.identity);
-                var rightBullet = Instantiate(bulletPrefab, 
-                                                rightBulletPosition,
+                var rightBullet = Instantiate(bulletPrefab,
+                                                bulletSpawnPoint.position,
                                                           Quaternion.identity);
                 centerBullet.GetComponent<Rigidbody>().AddForce(
-                                                                bulletSpawnPoint.forward 
-                                                                * bulletSpeed, 
+                                                                bulletSpawnPoint.forward
+                                                                * bulletSpeed,
                                                                 ForceMode.Impulse
                                                                 );
-                leftBullet.GetComponent<Rigidbody>().AddForce(
-                                                              transform.forward 
-                                                              * bulletSpeed, 
-                                                              ForceMode.Impulse
-                                                              );
-                rightBullet.GetComponent<Rigidbody>().AddForce(
-                                                               transform.forward 
-                                                               * bulletSpeed, 
-                                                               ForceMode.Impulse
-                                                               );
+
+                var leftMovementDirection = new Vector3(
+                                                        Mathf.Cos(rotateAngleLeft * Mathf.Deg2Rad), 
+                                                        0, 
+                                                        Mathf.Sin(rotateAngleLeft * Mathf.Deg2Rad)
+                                                        ).normalized;
+
+                var rightMovementDirection = new Vector3(
+                                                         Mathf.Cos(rotateAngleRight * Mathf.Deg2Rad), 
+                                                         0, 
+                                                         Mathf.Sin(rotateAngleRight * Mathf.Deg2Rad)
+                                                         ).normalized;
+                leftBullet.GetComponent<Rigidbody>().velocity = leftMovementDirection * bulletSpeed;
+                rightBullet.GetComponent<Rigidbody>().velocity = rightMovementDirection * bulletSpeed;
                 // debugging code
                 Destroy(rightBullet.gameObject, 3f);
                 Destroy(leftBullet.gameObject, 3f);
