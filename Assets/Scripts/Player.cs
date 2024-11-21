@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float turnSensitivity = 10f;
     public float bulletSpeed = 20f;
     public List<GameObject> inventory;
-    private bool hasPistol = false, hasRifel = false, hasShotty = false;
+    public bool hasPistol = false, hasRifel = false, hasShotty = false;
     [Header("Instantiatable Prefabs")]
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
@@ -85,7 +85,9 @@ public class Player : MonoBehaviour
             if (Input.GetAxisRaw("Fire1") > 0) // continuous fire
             {
                 var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);   
+                bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
+                //Debugging code
+                Destroy(bullet.gameObject, 3f);
             }
         }
 
@@ -95,6 +97,7 @@ public class Player : MonoBehaviour
             {
                 var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * bulletSpeed, ForceMode.Impulse);
+                Destroy(bullet.gameObject, 3f);
             }
         }
         // this resource seemed to help me in the development of this condition
