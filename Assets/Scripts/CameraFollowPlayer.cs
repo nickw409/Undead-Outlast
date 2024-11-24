@@ -7,16 +7,18 @@ public class CameraFollowPlayer : MonoBehaviour
     public GameObject Player;
 
     public float offset = 2f;
-    public float angle = 45f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float height = 7f;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Player.transform.position + new Vector3(0, 5, 0);
+        // Check if the Player still exists
+        if (Player != null)
+        {
+            transform.position = Player.transform.position + new Vector3(0, height, 0);
+        }
+        else
+        {
+            Debug.LogWarning("Player object is destroyed. Camera is no longer following.");
+        }
     }
 }
