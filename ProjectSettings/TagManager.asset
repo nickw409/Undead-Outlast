@@ -9,6 +9,7 @@ TagManager:
   - rifel
   - shotgun
   - Ground
+  - zombie
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Player
   - Bullet
-  - 
+  - Zombie
   - 
   - 
   - 
