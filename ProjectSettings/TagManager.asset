@@ -8,6 +8,7 @@ TagManager:
   - bullet
   - rifel
   - shotgun
+  - Ground
   - zombie
   layers:
   - Default

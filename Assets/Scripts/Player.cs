@@ -33,9 +33,12 @@ public class Player : MonoBehaviour
         ShootWeapon();
         rotatePlayer();
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        if (healthPoints <= 0)
+        GameObject ground = GameObject.FindGameObjectWithTag("Ground");
+        // if player's health is low or falls out of bounds (just in case)
+        if (healthPoints <= 0 
+                || gameObject.transform.position.y < ground.transform.position.y)
             Destroy(this.gameObject);
     }
     void PlayerMove()
@@ -49,7 +52,7 @@ public class Player : MonoBehaviour
             horizontal *= moveLimiter;
             vertical *= moveLimiter;
         }
-        rigid.velocity = new Vector3(horizontal * moveSpeed, 0, vertical * moveSpeed);
+        rigid.velocity = new Vector3(horizontal * moveSpeed, rigid.velocity.y, vertical * moveSpeed);
     }
 
     // from https://www.reddit.com/r/Unity3D/comments/44mqkj/making_a_top_down_shooter_how_do_i_make_my/?rdt=47221
