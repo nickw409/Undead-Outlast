@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6256300712551323046}
   - component: {fileID: 4250404084055316821}
   - component: {fileID: 1607963882470022565}
+  - component: {fileID: -23217138800420468}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -157,6 +158,7 @@ MonoBehaviour:
   moveSpeed: 20
   moveLimiter: 0.7
   healthPoints: 100
+  maxHealthPoints: 100
   money: 0
   turnSensitivity: 10
   bulletSpeed: 20
@@ -164,8 +166,12 @@ MonoBehaviour:
   hasPistol: 0
   hasRifel: 0
   hasShotty: 0
+  rifleFireRate: 0.1
+  rifleSpread: 0.1
   bulletPrefab: {fileID: 474351597065944920, guid: f0fddad5e339d99479320329b0950b58, type: 3}
   bulletSpawnPoint: {fileID: 4247366862591929746}
+  youDiedText: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &1607963882470022565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -193,6 +199,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!208 &-23217138800420468
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727518013298548785}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.4, y: 1, z: 0.4}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9046307102094802041
 GameObject:
   m_ObjectHideFlags: 0
