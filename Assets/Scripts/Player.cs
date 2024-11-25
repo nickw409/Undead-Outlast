@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // For using UI components like Slider
+using UnityEngine.UI;
 using TMPro;
 
 public class Player : MonoBehaviour
 {
-    [Header("Movment")]
+    [Header("Movement")]
     public float moveSpeed = 20f, moveLimiter = 0.7f;
     private Rigidbody rigid;
 
     [Header("Mechanics")]
-    public float healthPoints = 100f; // Current health
-    public float maxHealthPoints = 100f; // Maximum health
+    public float healthPoints = 100f; 
+    public float maxHealthPoints = 100f; 
     public float money = 0f;
     public float turnSensitivity = 10f;
     public float bulletSpeed = 20f;
@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
 
     [Header("Weapons")]
     public bool hasPistol = false, hasRifel = false, hasShotty = false;
+
+    [Header("Rifle Settings")]
+    public float rifleFireRate = 0.1f; // time between rifle shots
+    private float nextRifleFireTime = 0f; // tracks the next time a rifle shot can be fired
+    public float rifleSpread = 0.1f; // random spread angle for rifle bullets
 
     [Header("Instantiatable Prefabs")]
     public GameObject bulletPrefab;
@@ -30,7 +35,7 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI youDiedText; // "YOU DIED" text
-    public Slider healthBar; // Health bar UI element
+    public Slider healthBar; // health bar UI element
 
     void Awake()
     {
@@ -39,21 +44,21 @@ public class Player : MonoBehaviour
 
         if (youDiedText != null)
         {
-            youDiedText.gameObject.SetActive(false); // Hide "YOU DIED" text at the start
+            youDiedText.gameObject.SetActive(false); // hide "YOU DIED" text at the start
         }
 
         if (healthBar != null)
         {
-            healthBar.maxValue = maxHealthPoints; // Set the health bar's maximum value
-            healthBar.value = healthPoints; // Initialize the health bar's value
+            healthBar.maxValue = maxHealthPoints; // set the health bar's maximum value
+            healthBar.value = healthPoints; // initialize the health bar's value
         }
     }
 
     void Update()
     {
         PlayerMove();
-        ShootWeapon();
         RotatePlayer();
+        ShootWeapon();
     }
 
     void FixedUpdate()
@@ -97,7 +102,14 @@ public class Player : MonoBehaviour
     {
         if (hasRifel && Input.GetAxisRaw("Fire1") > 0)
         {
-            FireBullet(bulletSpawnPoint.forward);
+            // check if it's time to fire
+            if (Time.time >= nextRifleFireTime) 
+            {
+                // set the next allowed fire time
+                nextRifleFireTime = Time.time + rifleFireRate;
+                // fire with spread
+                FireBulletWithSpread(); 
+            }
         }
 
         if (hasPistol && Input.GetMouseButtonDown(0))
@@ -115,8 +127,24 @@ public class Player : MonoBehaviour
     {
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().AddForce(direction * bulletSpeed, ForceMode.Impulse);
-        // Destroy bullet after 3 seconds
-        Destroy(bullet.gameObject, 3f);
+        // destroy bullet after 3 seconds
+        Destroy(bullet.gameObject, 3f); 
+    }
+
+    void FireBulletWithSpread()
+    {
+        // random spread to the bullet's direction
+        Vector3 randomSpread = new Vector3(
+            Random.Range(-rifleSpread, rifleSpread),
+            0f,
+            Random.Range(-rifleSpread, rifleSpread)
+        );
+
+        Vector3 fireDirection = bulletSpawnPoint.forward + randomSpread;
+        // ensure the direction is normalized
+        fireDirection.Normalize(); 
+
+        FireBullet(fireDirection);
     }
 
     void FireShotgunSpread()
@@ -138,7 +166,8 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("zombie"))
         {
-            TakeDamage(10); // Take 10 damage when hit by a zombie
+            // Take 10 damage when hit by a zombie
+            TakeDamage(10); 
 
             Vector3 knockbackDirection = (transform.position - other.transform.position).normalized;
             rigid.AddForce(knockbackDirection * 5f, ForceMode.Impulse);
@@ -203,7 +232,8 @@ public class Player : MonoBehaviour
 
         if (youDiedText != null)
         {
-            youDiedText.gameObject.SetActive(true); // Show "YOU DIED" text
+            // Show "YOU DIED" text
+            youDiedText.gameObject.SetActive(true); 
         }
 
         StartCoroutine(DieAndCleanup());
@@ -211,8 +241,9 @@ public class Player : MonoBehaviour
 
     IEnumerator DieAndCleanup()
     {
-        yield return new WaitForSeconds(2f); // Wait for 2 seconds before transitioning
-
-        SceneManager.LoadScene("main_menu"); // Replace "main_menu" with the actual scene name
+        // Wait for 2 seconds before transitioning
+        yield return new WaitForSeconds(2f);
+        // Replace "main_menu" with the actual scene name
+        SceneManager.LoadScene("main_menu");
     }
 }
