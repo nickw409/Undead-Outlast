@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour
-{   
+{
     private GameObject player;
     public NavMeshAgent agent;
-    // Start is called before the first frame update
+
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 playerPOS = player.transform.position;
-        agent.SetDestination(playerPOS);
+        // Check if the player still exists
+        if (player != null)
+        {
+            Vector3 playerPOS = player.transform.position;
+            agent.SetDestination(playerPOS);
+        }
+        else
+        {
+            // If the player no longer exists, stop the zombie
+            agent.SetDestination(transform.position);
+        }
     }
 }
