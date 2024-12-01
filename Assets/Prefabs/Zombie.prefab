@@ -186,3 +186,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  scoreManager: {fileID: 8964358110505884040, guid: 79c76e6507dcf9a4e8192ec7a4a6f776, type: 3}
+  scoreOnKill: 100
