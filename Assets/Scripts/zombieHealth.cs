@@ -6,9 +6,15 @@ public class ZombieHealth : MonoBehaviour
 {
     public int maxHealth = 3; // Number of hits a zombie can take
     private int currentHealth;
+    public ScoreManager scoreManager;
+    public int scoreOnKill = 100;
 
     void Start()
     {
+        if (scoreManager == null)
+        {
+            scoreManager = FindObjectOfType<ScoreManager>(); 
+        }
         currentHealth = maxHealth;
     }
 
@@ -23,6 +29,11 @@ public class ZombieHealth : MonoBehaviour
 
     void Die()
     {
+        if (scoreManager != null)
+        {
+            scoreManager.IncreaseScore(scoreOnKill); 
+        }
+
         // Optional: Play death animation or effects here
         Destroy(gameObject);
     }
